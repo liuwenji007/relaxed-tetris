@@ -1,9 +1,18 @@
+/*
+ * @Author: lwj
+ * @Date: 2021-09-08 18:51:24
+ * @LastEditors: lwj
+ * @LastEditTime: 2021-09-09 18:48:36
+ * @Description: 
+ * @FilePath: /vue-tetris/src/control/todo/rotate.js
+ */
 import { want } from '../../unit/'
 import event from '../../unit/event'
 import states from '../states'
 import { music } from '../../unit/music'
 const down = store => {
   store.commit('key_rotate', true)
+  debugger;
   if (store.state.cur !== null) {
     event.down({
       key: 'rotate',

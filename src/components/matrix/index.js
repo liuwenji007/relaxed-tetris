@@ -144,6 +144,10 @@ export default {
       for (let i = 0; i <= 40; i++) {
         t(exLine.bind(null, i), 40 * (i + 1))
       }
+    },
+    
+    checkMatrix(){
+       // 获取当前表盘状态码
     }
   }
 }

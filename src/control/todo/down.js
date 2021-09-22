@@ -1,3 +1,11 @@
+/*
+ * @Author: lwj
+ * @Date: 2021-09-08 18:51:24
+ * @LastEditors: lwj
+ * @LastEditTime: 2021-09-09 19:34:57
+ * @Description: 
+ * @FilePath: /vue-tetris/src/control/todo/down.js
+ */
 import { want } from "../../unit/";
 import event from "../../unit/event";
 import states from "../states";
@@ -10,6 +18,7 @@ const down = store => {
       begin: 40,
       interval: 40,
       callback: stopDownTrigger => {
+        debugger;
         const state = store.state;
         if (state.lock) {
           return;
@@ -37,7 +46,7 @@ const down = store => {
           shape.forEach((m, k1) =>
             m.forEach((n, k2) => {
               if (n && xy[0] + k1 >= 0) {
-                // 竖坐标可以为负
+                // 竖坐标可以为负,
                 let line = matrix[xy[0] + k1];
                 line[xy[1] + k2] = 1;
 

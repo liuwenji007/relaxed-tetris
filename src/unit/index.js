@@ -7,8 +7,17 @@ const hiddenProperty = (() => {
 })()
 const unit = {
   getNextType() {
+    debugger;
     // 随机获取下一个方块类型
     const len = blockType.length
+    console.log(blockType)
+    return blockType[Math.floor(Math.random() * len)]
+  },
+  getBestType(){
+    // 获取最好的方块类型
+
+    const len = blockType.length
+
     return blockType[Math.floor(Math.random() * len)]
   },
   want(next, matrix) {
@@ -57,9 +66,21 @@ const unit = {
     }
     return clearLines
   },
+  getTopBottomMatrix(matrix){
+    //
+  },
+  whichNext(matrix) {
+    // 下一个哪个最好
+    matrix.forEach((m, k) => {
+      if (m.every(n => !!n)) {
+        clearLines.push(k)
+      }
+    })
+
+  },
   isOver(matrix) {
     // 游戏是否结束, 第一行落下方块为依据
-  
+
     return matrix[0].some(n => !!n)
   },
   subscribeRecord(store) {

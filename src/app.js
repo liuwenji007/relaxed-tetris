@@ -12,6 +12,7 @@ import { mapState } from 'vuex'
 import { transform, lastRecord, speeds, i18n, lan } from './unit/const'
 import { visibilityChangeEvent, isFocus } from './unit/'
 import states from './control/states'
+import { blockShape } from './unit/const'
 export default {
   mounted() {
     this.render()
@@ -86,6 +87,23 @@ export default {
       this.size = size
       this.start()
       this.filling = filling
+      this.getAllRotateShape()
+    },
+    getAllRotateShape() {
+      const shape = blockShape;
+      const allShape = {};
+      for (let l in blockShape) {
+        allShape[l] = {}
+        let cur = blockShape[l];
+        for (let i = 0; i < 4; i++) {
+          const arr = [];
+          cur = this.rotate(cur)
+          arr.push(this.rotate(cur))
+          allShape[l][i] = arr;
+        }
+      }
+
+      console.log(allShape)
     },
     resize() {
       this.w = document.documentElement.clientWidth
@@ -124,6 +142,23 @@ export default {
       } else {
         states.overStart()
       }
+    },
+    rotate(shape) {
+      debugger;
+      let result = []
+      shape.forEach(m =>
+        m.forEach((n, k) => {
+          const index = m.length - k - 1
+          if (result[index] === undefined) {
+            result[index] = []
+          }
+
+          result[index].push(n)
+          const tempK = [...result[index]]
+          result[index] = tempK
+        })
+      )
+      return result
     }
   }
 }

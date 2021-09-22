@@ -9,7 +9,23 @@ export const blockShape = {
   O: [[1, 1], [1, 1]],
   T: [[0, 1, 0], [1, 1, 1]]
 }
-
+export const allBlockShape = {
+  I: {
+    0: [[1, 1, 1, 1]],
+    1: [[1], [1], [1], [1]],
+  },
+  L: { 
+    0: [[0, 0, 1], [1, 1, 1]], 
+    1: [[0, 0, 1], [1, 1, 1]], 
+    2: [[0, 0, 1], [1, 1, 1]], 
+    3: [[0, 0, 1], [1, 1, 1]] 
+  },
+  J: [[1, 0, 0], [1, 1, 1]],
+  Z: [[1, 1, 0], [0, 1, 1]],
+  S: [[0, 1, 1], [1, 1, 0]],
+  O: [[1, 1], [1, 1]],
+  T: [[0, 1, 0], [1, 1, 1]]
+}
 export const origin = {
   I: [[-1, 1], [1, -1]],
   L: [[0, 0]],
@@ -65,7 +81,7 @@ export const lastRecord = (() => {
 
 export const maxPoint = 999999
 
-export const transform = (function() {
+export const transform = (function () {
   const trans = [
     'transform',
     'webkitTransform',
