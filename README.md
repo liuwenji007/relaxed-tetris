@@ -4,9 +4,7 @@ Please view [README.md](https://github.com/Binaryify/vue-tetris/blob/master/READ
 ## 用Vue、Vuex 做俄罗斯方块
 
 ----
-本项目灵感来源于 React 版的[俄罗斯方块](https://github.com/chvin/react-tetris),由于对其实现原理较感兴趣,而且相比于 React 更喜欢 Vue, 于是把 React 版的重构为了 Vue 版的,大致思路是把组件当成一个个函数,保证一个输入(props)能得到一个确定的输出(view),然后对不同方法也是做同样处理,对于 Redux 使用 Vuex 精简化
-
-戳：[https://binaryify.github.io/vue-tetris/?lan=zh](https://binaryify.github.io/vue-tetris/?lan=zh) 玩一玩！
+本项目灵感来源于 Vue 版的[俄罗斯方块][https://binaryify.github.io/vue-tetris/?lan=zh](https://binaryify.github.io/vue-tetris/?lan=zh),由于对其实现原理较感兴趣,继而熟悉了下项目，并且衍生出一个新的想法。我想在已有的基础上实现一个会自动判断下一个方块如何为最优解的算法，并在游戏的过程中给以辅助。
 
 ----
 ### 效果预览
