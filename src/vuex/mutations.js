@@ -1,9 +1,20 @@
-import { getNextType } from '../unit'
+/*
+ * @Author: lwj
+ * @Date: 2021-09-08 18:51:24
+ * @LastEditors: lwj
+ * @LastEditTime: 2022-10-17 16:27:31
+ * @Description: 
+ * @FilePath: /vue-tetris/src/vuex/mutations.js
+ */
+import { getNextType,getBestType } from '../unit'
 import Block from '../unit/block'
 const mutations = {
   nextBlock(state, data) {
+    // if (!data) {
+    //   data = getNextType()
+    // }
     if (!data) {
-      data = getNextType()
+      data = getBestType()
     }
     state.next = data
   },

@@ -13,11 +13,11 @@ const unit = {
     console.log(blockType)
     return blockType[Math.floor(Math.random() * len)]
   },
-  getBestType(){
+  getBestType() {
     // 获取最好的方块类型
 
     const len = blockType.length
-
+    
     return blockType[Math.floor(Math.random() * len)]
   },
   want(next, matrix) {
@@ -66,7 +66,7 @@ const unit = {
     }
     return clearLines
   },
-  getTopBottomMatrix(matrix){
+  getTopBottomMatrix(matrix) {
     //
   },
   whichNext(matrix) {
@@ -109,6 +109,63 @@ const unit = {
     const nokiaN = ua.indexOf('NokiaN') > -1
     return android || iphone || ipod || ipad || nokiaN
   },
+  /**
+   * @description: 判断权重
+   * @param {*} heightWeight 网格高度权重
+   * @param {*} linesWeight 网格行数权重
+   * @param {*} holesWeight 空洞数权重
+   * @param {*} bumpinessWeight 凹凸度权重
+   * @return {*}
+   */
+  AI(heightWeight, linesWeight, holesWeight, bumpinessWeight) {
+    this.heightWeight = heightWeight;
+    this.linesWeight = linesWeight;
+    this.holesWeight = holesWeight;
+    this.bumpinessWeight = bumpinessWeight;
+    _best = function (grid, workingPieces, workingPieceIndex) {
+      const best = null;
+      const bestScore = null;
+      const workingPiece = workingPieces[workingPieceIndex];
+
+      for (let rotation = 0; rotation < 4; rotation++) {
+        var _piece = workingPiece.clone();
+        for (var i = 0; i < rotation; i++) {
+          _piece.rotate(grid);
+        }
+
+        while (_piece.moveLeft(grid));
+
+        while (grid.valid(_piece)) {
+          var _pieceSet = _piece.clone();
+          while (_pieceSet.moveDown(grid));
+
+          var _grid = grid.clone();
+          _grid.addPiece(_pieceSet);
+
+          var score = null;
+          if (workingPieceIndex == (workingPieces.length - 1)) {
+            score = -this.heightWeight * _grid.aggregateHeight() + this.linesWeight * _grid.lines() - this.holesWeight * _grid.holes() - this.bumpinessWeight * _grid.bumpiness();
+          } else {
+            score = this._best(_grid, workingPieces, workingPieceIndex + 1).score;
+          }
+
+          if (score > bestScore || bestScore == null) {
+            bestScore = score;
+            best = _piece.clone();
+          }
+
+          _piece.column++;
+        }
+      }
+
+      return { piece: best, score: bestScore };
+    };
+    best = function (grid, workingPieces) {
+      return this._best(grid, workingPieces, 0).piece;
+    };
+  },
+
+
   visibilityChangeEvent: (() => {
     if (!hiddenProperty) {
       return false
@@ -125,6 +182,7 @@ const unit = {
 }
 export const {
   getNextType,
+  getBestType,
   isMobile,
   want,
   isClear,

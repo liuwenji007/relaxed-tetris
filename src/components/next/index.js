@@ -1,3 +1,11 @@
+/*
+ * @Author: lwj
+ * @Date: 2021-09-08 18:51:24
+ * @LastEditors: lwj
+ * @LastEditTime: 2022-02-04 11:25:51
+ * @Description: 
+ * @FilePath: /vue-tetris/src/components/next/index.js
+ */
 import { blockShape } from '../../unit/const'
 const xy = {
   // 方块在下一个中的坐标
@@ -25,6 +33,7 @@ export default {
     $props: {
       deep: true,
       handler(nextProps) {
+        debugger;
         this.build(nextProps.data)
       }
     }
